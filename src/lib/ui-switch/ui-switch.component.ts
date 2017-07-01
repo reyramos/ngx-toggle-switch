@@ -17,11 +17,17 @@ const UI_SWITCH_CONTROL_VALUE_ACCESSOR: any = {
     [class.switch-large]="size === 'large'"
     [class.switch-medium]="size === 'medium'"
     [class.switch-small]="size === 'small'"
+    [class.switch-labeled]="!!labelOn || !!labelOff"
     [style.background-color]="getColor()"
     [style.border-color]="getColor('borderColor')"
     >
+    <input type="checkbox" id="enabled" name="enabled" [checked]="checked" style="display: none;" aria-invalid="false">
     <small [style.background]="getColor('switchColor')">
     </small>
+    <span class="switch-text" *ngIf="!!labelOn || !!labelOff">
+      <span class="on">Yes</span>
+      <span class="off">No</span>
+    </span>
     </span>
   `,
   styles: [`
@@ -67,6 +73,10 @@ const UI_SWITCH_CONTROL_VALUE_ACCESSOR: any = {
     border-radius: 30px;
     }
 
+    .switch-medium.switch-labeled {
+      width: 60px;
+    }
+
     .switch-medium small {
     width: 30px;
     height: 30px;
@@ -83,6 +93,10 @@ const UI_SWITCH_CONTROL_VALUE_ACCESSOR: any = {
     height: 20px;
     }
 
+    .switch-labeled {
+      cursor: pointer;
+    }
+
     .checked {
     background: rgb(100, 189, 99);
     border-color: rgb(100, 189, 99);
@@ -96,6 +110,10 @@ const UI_SWITCH_CONTROL_VALUE_ACCESSOR: any = {
     left: 20px;
     }
 
+    .switch-medium.switch-labeled.checked small {
+      left: 30px;
+    }
+
     .switch-small.checked small {
     left: 13px;
     }
@@ -104,6 +122,39 @@ const UI_SWITCH_CONTROL_VALUE_ACCESSOR: any = {
     opacity: .50;
     cursor: not-allowed;
     }
+
+    .switch .switch-text {
+      font-size: 13px;
+    }
+
+    .switch .off {
+      opacity: 1;
+      position: absolute;
+      right: 10%;
+      top: 25%;
+      z-index: 0;
+      color:#A9A9A9;
+      transition: 0.4s ease-out all;
+    }
+
+    .switch .on {
+      opacity:0;
+      z-index: 0;
+      color:#fff;
+      position: absolute;
+      top: 25%;
+      left: 9%;
+      transition: 0.4s ease-out all;
+    }
+
+    .switch.checked .off {
+      opacity:0;
+    }
+
+    .switch.checked .on {
+      opacity:1;
+    }
+
     `],
   providers: [UI_SWITCH_CONTROL_VALUE_ACCESSOR]
 })
@@ -120,6 +171,8 @@ export class UiSwitchComponent implements ControlValueAccessor {
   @Input() switchColor = '#fff';
   @Input() defaultBgColor = '#fff';
   @Input() defaultBoColor = '#dfdfdf';
+  @Input() labelOn = '';
+  @Input() labelOff = '';
 
   @Input() set checked(v: boolean) {
     this._checked = v !== false;
