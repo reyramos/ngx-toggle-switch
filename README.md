@@ -215,5 +215,11 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 ## FAQ
 
-## License
+### Toggle text
+
+```html
+<ui-switch labelOn="Yes" labelOff="No"></ui-switch>
+```
+
+# License
 MIT
