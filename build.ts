@@ -66,7 +66,7 @@ function generateBundle(input, file, globals, name, format) {
 }
 
 function createUmd(globals) {
-  const name = 'ngx-ui-switch';
+  const name = 'ngx-toggle-switch';
   const entry = `${process.cwd()}/dist/es5/index.js`;
   return generateBundle(
     entry,
@@ -78,7 +78,7 @@ function createUmd(globals) {
 }
 
 function createEs(globals, target) {
-  const name = 'ngx-ui-switch';
+  const name = 'ngx-toggle-switch';
   const entry = `${process.cwd()}/dist/${target}/index.js`;
   return generateBundle(
     entry,
