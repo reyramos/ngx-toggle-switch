@@ -46,14 +46,14 @@ branch will be created to allow bugfixes. Below is how to install the latest
 version of the library.
 
 ```sh
-npm install ngx-ui-switch --save
-# yarn add ngx-ui-switch
+npm install ngx-toggle-switch --save
+# yarn add ngx-toggle-switch
 ```
 
 ## Usage
 
 ```javascript
-import { UiSwitchModule } from 'ngx-ui-switch';
+import { UiSwitchModule } from 'ngx-toggle-switch';
 import { AppComponent } from './app.component';
 
 @NgModule({
